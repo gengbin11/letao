@@ -3,7 +3,6 @@ $(function () {
     getFirstCategoryData(function (data) {
         /*一级分类默认渲染*/
         /*模板的使用顺序:json数据,定义模板,调用模板,返回html*/
-        console.log(data)
         $('.cate_left ul').html(template('firstTemplate', data));
         // initSecondTapHandle();
         /*第一个一级分类对应的二级分类*/
@@ -47,7 +46,6 @@ var getSecondCategoryData = function (params, callback) {
         data: params,
         dataType: 'json',
         success: function (data) {
-            console.log(data);
             callback && callback(data);
         }
     });
