@@ -32,6 +32,24 @@ $(function () {
         });
     });
 
+    /*4.搜索结果排序功能*/
+    $('.ct_order     a').on('tap',function () {
+        /*当前点击的A*/
+        var $this = $(this);
+        /*如果之前没有选择*/
+       if(!$this.hasClass('now')){
+           /*选中，并且取消其他的选中,箭头默认朝下*/
+            $this.addClass('now').siblings().removeClass('now').find('span').removeClass('fa-angle-up').addClass('fa-angle-down');
+       }else{
+           /*当前已经有被选择的分类，则改变箭头的方向*/
+           if($this.find('span').hasClass('fa-angle-down')){
+               $this.find('span').removeClass('fa-angle-down').addClass('fa-angle-up');
+           }else{
+               $this.find('span').removeClass('fa-angle-up').addClass('fa-angle-down');
+           }
+       }
+    });
+
 });
 
 var getSearchData = function (params, callback) {
