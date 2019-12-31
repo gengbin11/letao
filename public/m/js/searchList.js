@@ -59,31 +59,65 @@ $(function () {
             $('.ct_product').html(template('list', data));
         });
     });
-    /*5.下拉刷新，上拉加载*/
+    /*5.下拉刷新，重置排序功能，上拉加载*/
     mui.init({
-        pullRefresh:{
+        pullRefresh: {
             /*下拉容器*/
-            container:"#refreshContainer",
+            container: "#refreshContainer",
             /*下拉*/
-            down:{
-                auto:true,
-                callback:function () {
+            down: {
+                auto: true,
+                callback: function () {
                     var that = this;
                     var key = $.trim($input.val());
-                    if(!key){
+                    if (!key) {
                         mui.toast('请输入关键字');
                         return false;
                     }
+                    /*重置排序功能样式*/
+                    $('.ct_order a').removeClass('now').find('span').removeClass('fa-angle-up').addClass('fa-angle-down');
+
                     getSearchData({
-                        proName:key,
-                        page:1,
-                        pageSize:4
-                    },function (data) {
+                        proName: key,
+                        page: 1,
+                        pageSize: 4
+                    }, function (data) {
                         setTimeout(function () {
-                            $('.ct_product').html(template('list',data));
+                            $('.ct_product').html(template('list', data));
                             that.endPulldownToRefresh();
-                        },2000);
+                            /*上拉重置*/
+                            that.refresh(true);
+                        }, 2000);
                     });
+                }
+            },
+            up: {
+                callback: function () {
+                    window.page++;
+                    var that = this;
+                    var key = $.trim($input.val());
+                    if (!key) {
+                        mui.toast('请输入关键字');
+                        return false;
+                    }
+                    var order = $('.ct_order a.now').attr('data-order');
+                    var orderVal = $('.ct_order a.now').find('span').hasClass('fa-angle-up') ? 1 : 2;
+                    var params = {
+                        proName: key,
+                        page: window.page,
+                        pageSize: 4
+                    }
+                    params[order] =orderVal;
+                        getSearchData(params, function (data) {
+                            setTimeout(function () {
+                                $('.ct_product').append(template('list', data));
+                                if (data.data.length) {
+                                    that.endPullupToRefresh();
+                                } else {
+                                    that.endPullupToRefresh(true);
+                                }
+                            }, 2000);
+                        });
                 }
             }
         }
@@ -97,6 +131,7 @@ var getSearchData = function (params, callback) {
         data: params,
         dataType: 'json',
         success: function (data) {
+            window.page = data.page;
             callback && callback(data);
         }
     });
