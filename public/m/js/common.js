@@ -1,4 +1,5 @@
 window.CT={};
+CT.CART_URL='/cart/addCart';
 CT.getParamsByUrl = function () {
   /*用对象存储地址栏信息*/
   var params  = {};
@@ -11,6 +12,5 @@ CT.getParamsByUrl = function () {
           params[itemArr[0]]=itemArr[1];
       });
   };
-  console.log(params)
     return params;
 };
