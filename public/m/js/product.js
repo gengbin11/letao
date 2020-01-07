@@ -1,15 +1,34 @@
 $(function () {
-    /*1.加载商品数据*/
-    getProductData(CT.getParamsByUrl().productId, function (data) {
-        /*清除加载状态*/
-        $('.loading').remove();
-        /*渲染商品详情页*/
-        $('.mui-scroll').html(template('detail', data));
-        /*初始化轮播图*/
-        mui('.mui-slider').slider({
-            interval: 2000
-        });
-
+    mui('.mui-scroll-wrapper').scroll({
+        scrollX: false,//是否横向滚动
+        scrollY: true,//是否竖向滚动
+        startX: 0,//初始化时滚动至x
+        startY: 0,//初始化滚动至Y
+        indicators: false,//是否显示滚动条
+        deceleration: 0.0006,//阻尼系数，越小滚动越快
+        bounce: true//是否启用反弹
+    });
+    mui.init({
+        pullRefresh: {
+            container: '.mui-scroll-wrapper',
+            down: {
+                auto: true,
+                callback: function () {
+                    var that = this;
+                    /*1.加载商品数据*/
+                    getProductData(CT.getParamsByUrl().productId, function (data) {
+                        /*渲染商品详情页*/
+                        $('.mui-scroll').html(template('detail', data));
+                        /*结束刷新状态*/
+                        that.endPulldownToRefresh();
+                        /*初始化轮播图*/
+                        mui('.mui-slider').slider({
+                            interval: 2000
+                        });
+                    });
+                }
+            }
+        }
     });
     /*2.选中商品尺码*/
     $('body').on('tap', '.btn_size', function () {
@@ -57,37 +76,39 @@ $(function () {
                 }
             });
         });
+    }).on('tap', '.btn_pay', function () {
+        mui.toast('未实现');
     });
 });
-var getProductData = function (productId, callback) {
-    $.ajax({
-        url: '/product/queryProductDetail',
-        type: 'get',
-        data: {
-            id: productId
-        },
-        dataType: 'json',
-        success: function (data) {
-            setTimeout(function () {
+    var getProductData = function (productId, callback) {
+        $.ajax({
+            url: '/product/queryProductDetail',
+            type: 'get',
+            data: {
+                id: productId
+            },
+            dataType: 'json',
+            success: function (data) {
+                setTimeout(function () {
+                    callback && callback(data);
+                }, 1000);
+            }
+        });
+    };
+    var addCart = function (data, callback) {
+        $.ajax({
+            type: 'post',
+            url: '/cart/addCart',
+            data: data,
+            dataType: 'json',
+            beforeSend: function () {
+                window.addCarting = true;
+            },
+            success: function (data) {
                 callback && callback(data);
-            }, 1000);
-        }
-    });
-};
-var addCart = function (data, callback) {
-    $.ajax({
-        type: 'post',
-        url: '/cart/addCart',
-        data: data,
-        dataType: 'json',
-        beforeSend: function () {
-            window.addCarting = true;
-        },
-        success: function (data) {
-            callback && callback(data);
-        },
-        error: function () {
-            mui.toast('服务器繁忙');
-        }
-    });
-}
+            },
+            error: function () {
+                mui.toast('服务器繁忙');
+            }
+        });
+    }

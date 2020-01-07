@@ -1,5 +1,5 @@
 window.CT={};
-CT.CART_URL='/cart/addCart';
+CT.CART_URL='/m/cart.html';
 CT.getParamsByUrl = function () {
   /*用对象存储地址栏信息*/
   var params  = {};
