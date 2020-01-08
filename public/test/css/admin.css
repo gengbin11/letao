@@ -1,0 +1,30 @@
+body {
+    font-family: "Microsoft YaHei";
+}
+a:hover{
+    text-decoration: none;
+}
+.mt_150 {
+    margin-top: 150px;
+}
+
+.ad_aside {
+    width: 180px;
+    height: 100%;
+    background: #ccc;
+    position: absolute;
+}
+
+.ad_aside .brand {
+    width: 100%;
+    height: 50px;
+    background: #367fa9;
+}
+.ad_aside .brand a{
+    color: #fff;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+}
