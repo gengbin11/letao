@@ -11,14 +11,40 @@
 <body>
 <!--侧边栏-->
 <aside class="ad_aside">
-    <div class="brand">
-        <a href="index.html">后台系统</a>
+    <div class="brand"><a href="index.html">后台系统</a></div>
+    <!--用户-->
+    <div class="user">
+        <img src="images/default.png">
+        <span>超级管理员</span>
+    </div>
+    <!--菜单-->
+    <div class="menu">
+        <ul>
+            <li><a href="userManager.html"><span class="glyphicon glyphicon-user"></span>&nbsp;用户管理</a></li>
+            <li>
+                <a href="javascript:;"><span class="glyphicon glyphicon-list"></span>&nbsp;分类管理</a>
+                <div class="child" style="display: none">
+                    <a href="categoryFirst.html">一级分类</a>
+                    <a href="categorySecond.html">二级分类</a>
+                </div>
+            </li>
+            <li><a href="productManage.html"><span class="glyphicon glyphicon-gift"></span>&nbsp;商品管理</a></li>
+        </ul>
     </div>
 </aside>
+<!--内容-->
+<section class="ad_section">
+    <!--顶部导航-->
+    <nav class="ad_nav">
+        <a data-menu href="javascript:;"><span class="glyphicon glyphicon-align-justify"></span></a>
+        <a data-logout href="javascript:;"><span class="glyphicon glyphicon-log-out"></span></a>
+    </nav>
+</section>
 <script src="assets/jquery/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script src="assets/nprogress/nprogress.js"></script>
 <script src="assets/echarts/echarts.min.js"></script>
+<script src="js/admin.js"></script>
 </body>
 </html>
