@@ -85,6 +85,7 @@ a:hover, a:active, a:focus {
 .ad_section .ad_nav {
     background: #3c8dbc;
     height: 50px;
+    margin-bottom: 20px;
 }
 
 .ad_section .ad_nav a {
