@@ -25,7 +25,6 @@ $('.menu [href="javascript:;"]').on('click', function () {
 });
 /*4.退出功能*/
 $('[data-logout]').on('click', function () {
-    debugger
     /*4.1准备模态框*/
     var logoutModal = '<div class="modal fade" id="logoutModal">' +
         '    <div class="modal-dialog modal-sm">' +

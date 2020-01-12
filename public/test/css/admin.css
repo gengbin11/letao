@@ -101,3 +101,14 @@ a:hover, a:active, a:focus {
     margin-right: 15px;
     float: right;
 }
+.ad_content{
+    margin-top: 20px;
+}
+.ad_content .picTable{
+    width: 45%;
+    height: 400px;
+    float: left;
+}
+.ad_content .picTable:first-child{
+    margin-right: 10%;
+}
