@@ -9,6 +9,9 @@ a:hover, a:active, a:focus {
 .mt_150 {
     margin-top: 150px;
 }
+.mb_15{
+    margin-bottom: 15px;
+}
 
 .ad_aside {
     width: 180px;
@@ -111,4 +114,10 @@ a:hover, a:active, a:focus {
 }
 .ad_content .picTable:first-child{
     margin-right: 10%;
+}
+.table th,.table td{
+    text-align: center;
+}
+.page{
+    float: right;
 }
