@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="assets/nprogress/nprogress.css"/>
     <link rel="stylesheet" href="css/admin.css"/>
     <style>
-        .fileupload{
+        .fileupload {
             position: relative;
         }
-        .fileupload [type="file"]{
+
+        .fileupload [type="file"] {
             width: 82px;
             height: 34px;
             position: absolute;
@@ -106,7 +107,8 @@
                     <div class="form-group">
                         <input type="hidden" name="brandLogo">
                         <div class="fileupload">
-                            <input type="file" name="pic1" data-url="/category/addSecondCategoryPic" class="btn btn-default">
+                            <input type="file" name="pic1" data-url="/category/addSecondCategoryPic"
+                                   class="btn btn-default">
                             <a href="javascript:;" class="btn btn-default">上传图片</a>
                         </div>
                     </div>
@@ -116,6 +118,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 <button type="submit" class="btn btn-primary" form="form">确认</button>
+            </div>
         </div>
     </div>
 </div>
@@ -128,8 +131,8 @@
         <td><img width="50" height="50" src="<%=rows[i].brandLogo%>" alt=""></td>
     </tr>
     <% } %>
-</script>定</button>
-</div>
+</script>
+
 <script src="assets/jquery/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/bootstrap-validator/js/bootstrapValidator.min.js"></script>
